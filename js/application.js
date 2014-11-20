@@ -33,6 +33,22 @@ $(document).ready(function () {
             }
         });
     });
+    $('section#main header form').submit(function(){
+        var $query = $.trim($('section#main header input').val());
+
+        if ($query) {
+            $("section#main article div:first ul li").hide();
+            $("section#main article div:first ul li p:contains('" + ($query.toUpperCase()) + "')").closest('li').fadeIn();
+        } else {
+            $("section#main article div:first ul li").show();
+        }
+
+        return false;
+    });
+    $('section#main header input').keyup(function (e) {
+        e.preventDefault();
+        $('section#main header form').submit();
+    });
     $('section#view header #btn-view-back').click(function () {
         $("section#main").removeClass('left').addClass('current');
         $('section#view').removeClass('current').addClass('right');

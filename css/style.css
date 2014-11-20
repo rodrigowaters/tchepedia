@@ -44,3 +44,6 @@ section[role="region"][data-position="right"] {
 [data-type="list"] li p#description{
     text-align: justify;
 }
+#main .scrollable.header {
+    top: 0;
+}

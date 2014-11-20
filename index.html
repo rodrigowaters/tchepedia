@@ -6,16 +6,22 @@
         <title>Building blocks demo</title>
         <!--<link rel="stylesheet" href="css/fonts.css">-->
         <link rel="stylesheet" href="css/headers.css">
+        <link rel="stylesheet" href="css/input_areas.css">
         <link rel="stylesheet" href="css/lists.css">
         <link rel="stylesheet" href="css/transitions.css">
         <link rel="stylesheet" href="css/util.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <section id="main" data-position="current">
+        <section id="main" class="current" data-position="current">
             <section role="region">
-                <header class="fixed">
+                <header>
                     <h1>Tchêpedia</h1>
+                </header>
+                <header>
+                  <form action="#">
+                    <input type="text" placeholder="Pesquisar..." required="required">
+                  </form>
                 </header>
                 <article class="scrollable header">
                     <div data-type="list">
