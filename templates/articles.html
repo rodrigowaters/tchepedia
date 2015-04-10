@@ -1,0 +1,18 @@
+<ion-view view-title="Tchepedia" id="articles">
+    <ion-content>
+
+        <ion-list>
+
+            <ion-item ng-repeat="article in articles track by $index" item="article" href="#/article/{{$index}}" class="item-remove-animate">
+
+                {{article.title}}
+
+            </ion-item>
+
+        </ion-list>
+
+    </ion-content>
+</ion-view>
+
+
+
