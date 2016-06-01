@@ -1,20 +1,16 @@
-angular.module('tchepedia', ['ionic', 'tchepedia.controllers', 'tchepedia.services'])
+angular.module('tchepedia', ['ngMaterial', 'tchepedia.controllers', 'tchepedia.services'])
 
-        .run(function ($ionicPlatform) {
-            $ionicPlatform.ready(function () {
-                if (window.cordova && window.cordova.plugins.Keyboard) {
-                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                }
-                if (window.StatusBar) {
-                    StatusBar.styleDefault();
-                }
-            });
-        })
+    .controller('AppCtrl', function ($scope) {
 
-        .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-                $stateProvider
-                        .state("articles", {url: "/", templateUrl: "templates/articles.html", controller: "ArticlesCtrl"})
-                        .state("article-detail", {url: "/article/:articleId", templateUrl: "templates/article-detail.html", controller: "ArticleDetailCtrl"})
+        $scope.items = [
+            {id: '12-10'},
+            {id: '3-31'},
+            {id: '7-15'},
+            {id: '8-20'},
+            {id: '11-1'},
+            {id: '11-9'},
+            {id: '15-1'},
+            {id: 'xx-xx'}
+        ];
 
-                $urlRouterProvider.otherwise("/");
-            }]);
+    });
