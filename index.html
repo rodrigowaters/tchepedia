@@ -1,23 +1,39 @@
 <!DOCTYPE html>
-<html ng-app="tchepedia">
-    <head>
-        <title>Tchepedia</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="css/ionic.min.css">
-        <link rel="shortcut icon" type="image/png" href="images/icon-16.png" />
-        <script type="text/javascript" src="js/ionic.bundle.min.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/controller.js"></script>
-        <script type="text/javascript" src="js/services.js"></script>
-    </head>
-    <body>
+<html lang="pt-br" ng-app="tchepedia">
+<head>
+    <title>Tchêpedia</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/png" href="images/icon-16.png"/>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+</head>
+<body ng-controller="ArticlesCtrl" ng-cloak layout="column">
 
-        <ion-nav-bar class="bar-stable">
-            <ion-nav-back-button>
-            </ion-nav-back-button>
-        </ion-nav-bar>
-        <ion-nav-view></ion-nav-view>
+<md-toolbar class="md-warn">
+    <div class="md-toolbar-tools">
+        <h2 class="md-flex">Tchêpedia</h2>
+    </div>
+</md-toolbar>
 
-    </body>
+<md-content flex>
+
+    <md-list flex>
+        <md-list-item ng-repeat="article in articles track by $index" ng-click="showArticle($index)">
+            <p>{{article.title}}</p>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+
+</md-content>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controller.js"></script>
+<script type="text/javascript" src="js/services.js"></script>
+
+</body>
 </html>

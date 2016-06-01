@@ -1,6 +1,6 @@
 angular.module('tchepedia.services', [])
 
-        .factory('Articles_model', function ($http, $templateCache) {
+        .factory('Articles_model', function ($http) {
             var Articles_model = {};
 
             Articles_model.all = function () {

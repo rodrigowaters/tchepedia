@@ -1,7 +1,7 @@
 {
     "name": "Tchêpedia",
-    "version": "1.0",
-    "description": "A maior enciclopédia colaborativa sobre a cultura gaúcha",
+    "version": "2.0",
+    "description": "A maior enciclopédia sobre a cultura gaúcha",
     "launch_path": "/index.html",
     "fullscreen": "true",
     "icons": {
