@@ -1,4 +1,0 @@
-tchepedia
-=========
-
-tchepedia
