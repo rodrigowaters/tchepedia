@@ -1,0 +1,7 @@
+{
+  "name": "Tchêpedia",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
