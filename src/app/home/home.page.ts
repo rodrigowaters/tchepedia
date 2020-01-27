@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import {Router} from '@angular/router';
+import {Storage} from '@ionic/storage';
+import {LoadingController} from '@ionic/angular';
 
 @Component({
     selector: 'app-home',
@@ -8,56 +10,55 @@ import { LoadingController } from '@ionic/angular';
 })
 export class HomePage {
 
-    dictionary_cache = [];
-    dictionary = [];
+    items_default = {};
+    items = {};
+    closeLoading: boolean;
+    private loading: HTMLIonLoadingElement;
 
-    constructor( public loadingController: LoadingController ) {
+    constructor(public router: Router, private storage: Storage, private loadingController: LoadingController) {
 
-        this.loadingController.create({message: 'Carregando informações'})
-        .then((res) => {
-
-            res.present().then(() => {
-               
-                fetch('./assets/dictionary.json').then(res => res.json())
-                .then(json => {
-    
-                    this.dictionary_cache = json;
-                    this.dictionary = json;
-    
-                    res.dismiss();
-                    
-                });
-
+        this.presentLoading().then(() => {
+            this.storage.forEach((item, index) => {
+                this.items_default[index.padStart(4, '0')] = item;
+            }).then(() => {
+                this.closeLoading = false;
+                this.items = this.items_default;
+            }).finally(() => {
+                this.loading.dismiss();
             });
-
         });
-        
 
     }
 
     search(ev: any) {
 
-        this.dictionary = this.dictionary_cache;
+        // Resetar items
+        this.items = this.items_default;
 
+        // Localizar valor digitado
         const val = ev.target.value;
-        if (val && val.trim() != '') {
-            this.dictionary = this.dictionary.filter((item) => {
-                return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
-            });
+
+        // Validar se tem conteudo
+        if (val && val.trim() !== '') {
+
+            this.items = [];
+            for (let index in this.items_default) {
+                let item = this.items_default[index];
+                if ((item.title.toLowerCase().indexOf(val.toLowerCase()) > -1)) {
+                    this.items[index] = item;
+                }
+            }
+
         }
 
     }
 
     async presentLoading() {
-        const loading = await this.loadingController.create({
-            message: 'Hellooo',
-            duration: 2000
+        this.loading = await this.loadingController.create({
+            message: 'Carregando Dados'
         });
-        await loading.present();
-
-        const { role, data } = await loading.onDidDismiss();
-
-        console.log('Loading dismissed!');
+        return await this.loading.present();
     }
 
 }
+
