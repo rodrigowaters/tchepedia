@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Storage} from '@ionic/storage';
 
 @Component({
     selector: 'app-detail',
@@ -8,14 +9,16 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DetailPage {
 
-    id: any;
+    item: [];
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private storage: Storage) {
         this.route.params.subscribe(params => {
 
-            this.id = null;
+            this.item = [];
             if (params.hasOwnProperty('pageId')) {
-                this.id = params.pageId;
+                this.storage.get(params.pageId).then(item => {
+                    this.item = item;
+                });
             }
 
         });
