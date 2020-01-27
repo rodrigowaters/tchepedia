@@ -9,40 +9,34 @@ import {Storage} from '@ionic/storage';
 })
 export class HomePage {
 
+    items_default = [];
     items = [];
 
     constructor(public router: Router, private storage: Storage) {
-        this.initializeItems();
+        this.storage.forEach((item) => {
+            this.items_default.push(item);
+        }).then(() => {
+            this.items = this.items_default;
+        });
     }
 
     search(ev: any) {
 
         // Resetar items
-        this.initializeItems();
+        this.items = this.items_default;
 
         // Localizar valor digitado
         const val = ev.target.value;
 
         // Validar se tem conteudo
         if (val && val.trim() !== '') {
-            this.items = this.items.filter((item) => {
+            this.items = this.items.filter((item, b) => {
                 return (
                     // Filtrar no titulo
                     (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1)
                 );
             });
         }
-
-    }
-
-    initializeItems() {
-
-        this.items = [];
-        this.storage.forEach((item) => {
-            this.items.push(item);
-        }).then(() => {
-            console.log(this.items);
-        });
 
     }
 
