@@ -9,12 +9,11 @@ import {Storage} from '@ionic/storage';
 })
 export class DetailPage {
 
-    item: [];
+    item: { title: string, description: string };
 
     constructor(private route: ActivatedRoute, private storage: Storage) {
         this.route.params.subscribe(params => {
 
-            this.item = [];
             if (params.hasOwnProperty('pageId')) {
                 let pageID = Math.abs(params.pageId);
                 this.storage.get(pageID.toString()).then(item => {
