@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavParams} from "@ionic/angular";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-detail',
@@ -8,8 +8,17 @@ import {NavParams} from "@ionic/angular";
 })
 export class DetailPage {
 
-    constructor(public params: NavParams) {
-        console.log('params', params);
+    id: any;
+
+    constructor(private route: ActivatedRoute) {
+        this.route.params.subscribe(params => {
+
+            this.id = null;
+            if (params.hasOwnProperty('pageId')) {
+                this.id = params.pageId;
+            }
+
+        });
     }
 
 }

@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {ModalController} from '@ionic/angular';
-import {DetailPage} from '../detail/detail.page';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -11,7 +10,7 @@ export class HomePage {
 
     items = [];
 
-    constructor(public modalCtrl: ModalController) {
+    constructor(public router: Router) {
         this.initializeItems();
     }
 
@@ -24,13 +23,13 @@ export class HomePage {
         const val = ev.target.value;
 
         // Validar se tem conteudo
-        if (val && val.trim() != '') {
+        if (val && val.trim() !== '') {
             this.items = this.items.filter((item) => {
                 return (
                     // Filtrar no titulo
                     (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1)
                 );
-            })
+            });
         }
 
     }
@@ -6338,18 +6337,6 @@ export class HomePage {
                 "contribution": []
             }
         ];
-
-    }
-
-    async openPage(event, item) {
-
-        console.log('->', event, item);
-
-        const modal = await this.modalCtrl.create({
-            component: DetailPage
-        });
-
-        return await modal.present();
 
     }
 

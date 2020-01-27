@@ -13,7 +13,7 @@
 <ion-content>
 
     <ion-list>
-        <ion-item *ngFor="let item of items" (click)="openPage( item )">
+        <ion-item *ngFor="let item of items" [routerLink]="['/detail/'.concat(item.id)]">
             <ion-label>{{item.title}}</ion-label>
             <ion-icon name="arrow-round-forward" slot="end"></ion-icon>
         </ion-item>
