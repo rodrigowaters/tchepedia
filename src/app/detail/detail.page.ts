@@ -16,7 +16,8 @@ export class DetailPage {
 
             this.item = [];
             if (params.hasOwnProperty('pageId')) {
-                this.storage.get(params.pageId).then(item => {
+                let pageID = Math.abs(params.pageId);
+                this.storage.get(pageID.toString()).then(item => {
                     this.item = item;
                 });
             }

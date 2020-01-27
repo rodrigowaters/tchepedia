@@ -19,7 +19,10 @@ import {AppRoutingModule} from './app-routing.module';
         AppRoutingModule,
         IonicStorageModule.forRoot({
             name: 'tchepedia',
+            version: 1,
+            description: 'Items Storage',
             storeName: 'items',
+            dbKey: 'id',
             driverOrder: ['indexeddb', 'sqlite', 'websql']
         })
     ],
@@ -36,8 +39,9 @@ export class AppModule {
     constructor(private storage: Storage) {
 
         this.storage.keys().then(item => {
+
             // Verificar se existe registro
-            if (item.hasOwnProperty('items') === false) {
+            if (item.length === 0) {
 
                 // Cadastrar items
                 let itens = {
