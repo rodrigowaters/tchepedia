@@ -2,9 +2,15 @@ language: node_js
 node_js:
   - "node"
 
-cache: npm
+cache:
+  directories:
+    - ./node_modules
 
 before_install:
+  - npm install -g @angular/cli
   - npm install -g ionic@latest
+
+install:
+  - npm install
 
 script: npm run deploy
