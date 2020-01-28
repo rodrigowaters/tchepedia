@@ -4,4 +4,7 @@ node_js:
 
 cache: npm
 
+before_install:
+  - npm install -g ionic@latest
+
 script: npm run deploy
