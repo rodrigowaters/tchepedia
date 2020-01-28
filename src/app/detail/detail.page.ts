@@ -9,7 +9,8 @@ import {Storage} from '@ionic/storage';
 })
 export class DetailPage {
 
-    item: { title: string, description: string };
+    title: string;
+    description: string;
 
     constructor(private route: ActivatedRoute, private storage: Storage) {
         this.route.params.subscribe(params => {
@@ -17,7 +18,8 @@ export class DetailPage {
             if (params.hasOwnProperty('pageId')) {
                 let pageID = Math.abs(params.pageId);
                 this.storage.get(pageID.toString()).then(item => {
-                    this.item = item;
+                    this.title = item.title;
+                    this.description = item.description;
                 });
             }
 
