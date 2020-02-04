@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Storage} from '@ionic/storage';
+import {ArtigosService} from '../services/artigos.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-detail',
@@ -12,15 +12,20 @@ export class DetailPage {
     title: string;
     description: string;
 
-    constructor(private route: ActivatedRoute, private storage: Storage) {
+    constructor(
+        private route: ActivatedRoute,
+        private artigosService: ArtigosService
+    ) {
         this.route.params.subscribe(params => {
 
-            if (params.hasOwnProperty('pageId')) {
-                let pageID = Math.abs(params.pageId);
-                this.storage.get(pageID.toString()).then(item => {
-                    this.title = item.title;
-                    this.description = item.description;
-                });
+            if (params.hasOwnProperty('key')) {
+
+                const key = Math.abs(params.key);
+                const item = artigosService.find( key );
+
+                this.title = item.title;
+                this.description = item.description;
+
             }
 
         });

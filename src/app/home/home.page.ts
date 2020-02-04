@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {Storage} from '@ionic/storage';
-import {LoadingController} from '@ionic/angular';
+import {LoadingController, NavController} from '@ionic/angular';
+import {ArtigosService} from '../services/artigos.service';
 
 @Component({
     selector: 'app-home',
@@ -10,22 +9,19 @@ import {LoadingController} from '@ionic/angular';
 })
 export class HomePage {
 
-    items_default = {};
     items = {};
-    closeLoading: boolean;
     private loading: HTMLIonLoadingElement;
 
-    constructor(public router: Router, private storage: Storage, private loadingController: LoadingController) {
+    constructor(
+        private artigosService: ArtigosService,
+        private loadingController: LoadingController,
+        public navCtrl: NavController
+    ) {
 
         this.presentLoading().then(() => {
-            this.storage.forEach((item, index) => {
-                this.items_default[index.padStart(4, '0')] = item;
-            }).then(() => {
-                this.closeLoading = false;
-                this.items = this.items_default;
-            }).finally(() => {
-                this.loading.dismiss();
-            });
+            this.items = artigosService.fetch();
+        }).finally(() => {
+            this.loading.dismiss().then();
         });
 
     }
@@ -33,7 +29,7 @@ export class HomePage {
     search(ev: any) {
 
         // Resetar items
-        this.items = this.items_default;
+        this.items = this.artigosService.fetch();
 
         // Localizar valor digitado
         const val = ev.target.value;
@@ -41,13 +37,16 @@ export class HomePage {
         // Validar se tem conteudo
         if (val && val.trim() !== '') {
 
-            this.items = [];
-            for (let index in this.items_default) {
-                let item = this.items_default[index];
+            const itensFiltrado = [];
+
+            for (const key of Object.keys( this.items )) {
+                const item = this.items[key];
                 if ((item.title.toLowerCase().indexOf(val.toLowerCase()) > -1)) {
-                    this.items[index] = item;
+                    itensFiltrado[key] = item;
                 }
             }
+
+            this.items = itensFiltrado;
 
         }
 
