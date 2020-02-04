@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoadingController, NavController} from '@ionic/angular';
+import {LoadingController} from '@ionic/angular';
 import {ArtigosService} from '../services/artigos.service';
 
 @Component({
@@ -14,8 +14,7 @@ export class HomePage {
 
     constructor(
         private artigosService: ArtigosService,
-        private loadingController: LoadingController,
-        public navCtrl: NavController
+        private loadingController: LoadingController
     ) {
 
         this.presentLoading().then(() => {
@@ -39,7 +38,7 @@ export class HomePage {
 
             const itensFiltrado = [];
 
-            for (const key of Object.keys( this.items )) {
+            for (const key of Object.keys(this.items)) {
                 const item = this.items[key];
                 if ((item.title.toLowerCase().indexOf(val.toLowerCase()) > -1)) {
                     itensFiltrado[key] = item;

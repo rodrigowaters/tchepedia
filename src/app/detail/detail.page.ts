@@ -21,7 +21,7 @@ export class DetailPage {
             if (params.hasOwnProperty('key')) {
 
                 const key = Math.abs(params.key);
-                const item = artigosService.find( key );
+                const item = artigosService.find(key);
 
                 this.title = item.title;
                 this.description = item.description;

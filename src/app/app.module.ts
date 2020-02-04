@@ -9,7 +9,7 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
-import { ArtigosService } from './services/artigos.service';
+import {ArtigosService} from './services/artigos.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -29,6 +29,7 @@ import { ArtigosService } from './services/artigos.service';
 })
 export class AppModule {
 
-    constructor() {}
+    constructor() {
+    }
 
 }

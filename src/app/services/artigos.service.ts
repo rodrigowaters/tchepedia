@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class ArtigosService {
 
-    private itens: {  };
+    private readonly itens: {};
 
     constructor() {
         this.itens = {
@@ -4049,14 +4049,11 @@ export class ArtigosService {
     }
 
     fetch() {
-      return this.itens;
+        return this.itens;
     }
 
     find(key) {
-
-        console.log('key', key);
-
-      return this.itens[ key ];
+        return this.itens[key];
     }
 
 }
