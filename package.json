@@ -33,8 +33,10 @@
     "@ionic/storage": "2.2.0",
     "angular-cli-ghpages": "0.6.2",
     "cordova-android": "8.1.0",
+    "cordova-ios": "5.1.1",
     "cordova-sqlite-storage": "4.0.0",
     "core-js": "3.6.4",
+    "emulate": "1.0.2",
     "rxjs": "6.5.4",
     "tslib": "1.10.0",
     "zone.js": "0.10.2"
@@ -84,7 +86,8 @@
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
